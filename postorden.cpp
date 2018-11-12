@@ -21,7 +21,7 @@ struct Nodo2{
 };
 //Estructura para obtener el resultado de las opercines e insertar los datos tipo entero 
 struct Nodo3{
-	int dato;
+	float dato;
 	Nodo3 *siguiente; 
 };
 
@@ -33,8 +33,8 @@ void cambio(Nodo *&,Nodo2 *&,Nodo2 *&,char);
 bool menor(char,int);
 void vaciarPila(Nodo *&,Nodo2 *&,Nodo2 *&);
 void vaciarCola(Nodo2 *&);
-void resultado2(Nodo3 *&,int);
-void operaciones(Nodo3 *&,int);
+void resultado2(Nodo3 *&,float);
+void operaciones(Nodo3 *&,float);
 void cambio2(Nodo *&,Nodo2 *&,Nodo2 *&,char);
 
 //Funcion principal
@@ -48,7 +48,7 @@ int main(){
 	Nodo2 *auxMostrar2=NULL;
 	Nodo3 *pila3=NULL;
 	Nodo2 *ptrFrente=NULL;
-	int resultado;
+	float resultado;
 	char opcion;//variable para elegir la opcion del menu
 	int numCaracteres;//Variable que almacenara el numero de caracteres que se van a ingresar
 	char *caracter;//Variable para crear arreglo de caracteres dinamico
@@ -253,7 +253,6 @@ int main(){
 							break;
 					}
 				}
-				
 				//Si pila diferente de NULL hay datos en la pila 
 				while(pila !=NULL){
 					vaciarPila(pila,frente,fin);//Vaciando la pila y insertantodos en la cola
@@ -294,13 +293,9 @@ int main(){
 							break;
 						default:
 							char auxCaracter3=ptrFrente->dato2;
-							int convertir = auxCaracter3-'0';
+							float convertir = auxCaracter3-'0';
 							resultado2(pila3,convertir);
 							break;
-					}
-					//cout<<pila3->dato<<" ";
-					if((pila3 !=NULL)&&(pila3->siguiente !=NULL)){
-						cout<<pila3->siguiente->dato<<"    ";
 					}
 					ptrFrente=ptrFrente->siguiente2;
 				}
@@ -401,16 +396,17 @@ void vaciarCola(Nodo2 *&frente){
 	delete aux;
 }
 
-void resultado2(Nodo3 *&pila3, int dato){
+void resultado2(Nodo3 *&pila3,float dato){
 	Nodo3 *nuevoNodo = new Nodo3();
 	nuevoNodo->dato = dato;
 	nuevoNodo->siguiente = pila3;
 	pila3 = nuevoNodo;
 }
 
-void operaciones(Nodo3 *&pila3,int dato){
+void operaciones(Nodo3 *&pila3,float dato){
 	int auxNum;
 	Nodo3 *aux = pila3;
+	
 	auxNum = aux->dato;
 	pila3 = aux->siguiente->siguiente;
 	delete aux;
